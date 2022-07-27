@@ -1,12 +1,14 @@
 import sqlalchemy
+import pyodbc
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, select
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm import Session
 from sqlalchemy import ForeignKey
 
-engine = create_engine("sqlite+pysqlite:///:memory:", echo=True, future=True)
+# ConnectionString = 'mssql+pyodbc:// C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\'
+
+engine = create_engine('mssql+pyodbc://MARKO-ILIOSKI/test.mdf', echo=True, future=True)
 Base = declarative_base()
 
 
@@ -70,10 +72,4 @@ class ListOfProducts(Base):
 
 Base.metadata.create_all(engine)
 
-session = Session(engine)
-session.add(Batter(BatterId=1001, Type='JEFF'))
 
-session.commit()
-
-for row in session.execute(select(Batter)):
-    print(row)
