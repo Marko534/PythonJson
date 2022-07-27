@@ -9,8 +9,6 @@ DoughnutList = json.load(f)
 
 engine = create_engine("sqlite+pysqlite:///:memory:", echo=True, future=True)
 
-
-
 with engine.begin() as conn:
     conn.execute(text("CREATE TABLE some_table (x int, y int)"))
     conn.execute(
