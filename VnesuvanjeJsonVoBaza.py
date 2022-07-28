@@ -45,5 +45,17 @@ for RowJson in Json:
                 break
         if not IsInDataBase:
             session.add(DB.Topping(Id=RowTopping['id'], Type=RowTopping['type']))
+# Za BATTERS            
+for RowJson in Json:
+    for RowBatter in RowJson['batters']['batter']:
+        NameList = session.query(DB.Batter.Id)
+        IsInDataBase = False
+        for RowDataBase in NameList:
+            if RowDataBase.Id == int (RowBatter['id']):
+                IsInDataBase = True
+                break
+        if not IsInDataBase:
+            session.add(DB.Batter(Id=RowBatter['id'], Type=RowBatter['type']))
 
+# Za
 session.commit()
