@@ -11,11 +11,11 @@ engine = create_engine('mssql://@MARKO-ILIOSKI/Test?driver=SQL Server Native Cli
 session = Session(engine)
 
 for RowJson in Json:
-    NameList = session.execute(select(DB.Name.name))
+    NameList = session.query(DB.Name.name)
     IsInDataBase = False
     for RowDataBase in NameList:
         # PRASHAJ dali povde mozi na poubav nacin da bidi oti mislam mozi
-        if str(RowDataBase).find(RowJson['name']) != -1:
+        if RowDataBase.name == RowJson['name']:
             IsInDataBase = True
             break
     if not IsInDataBase:
