@@ -1,9 +1,5 @@
-from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import relationship
-from sqlalchemy import ForeignKey
-
+from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
+from sqlalchemy.orm import declarative_base, relationship
 
 engine = create_engine('mssql://@MARKO-ILIOSKI/Test?driver=SQL Server Native Client 11.0', echo=True, future=True)
 Base = declarative_base()
@@ -11,7 +7,7 @@ Base = declarative_base()
 
 class Batter(Base):
     __tablename__ = "Batter"
-    BatterId = Column(Integer, primary_key=True)
+    BatterId = Column(Integer, primary_key=True  )
     Type = Column(String)
     listOfProducts = relationship("ListOfProducts", back_populates="batter")
 
