@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
+import datetime
+from sqlalchemy import Column, Integer, String, DateTime ,ForeignKey, create_engine
 from sqlalchemy.orm import declarative_base, relationship
 
 engine = create_engine('mssql://@MARKO-ILIOSKI/Test?driver=SQL Server Native Client 11.0', echo=True, future=True)
@@ -8,7 +9,9 @@ Base = declarative_base()
 class Batter(Base):
     __tablename__ = "Batter"
     BatterId = Column(Integer, primary_key=True  )
+    Id = Column(Integer)
     Type = Column(String)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
     listOfProducts = relationship("ListOfProducts", back_populates="batter")
 
     def __repr__(self):
@@ -18,7 +21,9 @@ class Batter(Base):
 class Topping(Base):
     __tablename__ = "Topping"
     ToppingId = Column(Integer, primary_key=True)
+    Id = Column(Integer)
     Type = Column(String)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
     listOfProducts = relationship("ListOfProducts", back_populates="topping")
 
     def __repr__(self):
@@ -29,6 +34,7 @@ class TypeOf(Base):
     __tablename__ = "TypeOf"
     TypeOfId = Column(Integer, primary_key=True)
     Type = Column(String)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
     listOfProducts = relationship("ListOfProducts", back_populates="typeof")
 
     def __repr__(self):
@@ -39,6 +45,7 @@ class Name(Base):
     __tablename__ = "Name"
     NameId = Column(Integer, primary_key=True)
     name = Column(String)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
     listOfProducts = relationship("ListOfProducts", back_populates="name")
 
     def __repr__(self):
@@ -53,6 +60,7 @@ class ListOfProducts(Base):
     ppu = Column(Integer)
     batterid = Column(Integer, ForeignKey('Batter.BatterId'))
     toppingid = Column(Integer, ForeignKey('Topping.ToppingId'))
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
 
     typeof = relationship("TypeOf", back_populates="listOfProducts")
     name = relationship("Name", back_populates="listOfProducts")
