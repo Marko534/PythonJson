@@ -1,14 +1,11 @@
-import sqlalchemy
-import pyodbc
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 
-# ConnectionString = 'mssql+pyodbc:// C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\'
 
-engine = create_engine('mssql+pyodbc://MARKO-ILIOSKI/test.mdf', echo=True, future=True)
+engine = create_engine('mssql://@MARKO-ILIOSKI/Test?driver=SQL Server Native Client 11.0', echo=True, future=True)
 Base = declarative_base()
 
 
@@ -69,7 +66,7 @@ class ListOfProducts(Base):
     def __repr__(self):
         return f"ListOfProducts(barcode={self.barcode!r}, typeId={self.typeId!r}, nameid={self.nameid!r}, ppu={self.ppu!r}, batterid={self.batterid!r}, topping={self.topping!r})"
 
-
-Base.metadata.create_all(engine)
+if __name__ == '__main__':
+    Base.metadata.create_all(engine)
 
 
