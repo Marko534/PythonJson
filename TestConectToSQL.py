@@ -9,11 +9,12 @@ Json = json.load(f)
 
 session = Session(engine)
 
+nameid = session.query(DB.Name.NameId).filter(DB.Name.name == 'Cake').one().NameId
+NameList = session.query(DB.Name.name)
 
-for row in Json:
-    for Topping in row['batters']['batter']:
-        print (Topping['id'])
+print (nameid)
 
+session.commit()
 
 
 

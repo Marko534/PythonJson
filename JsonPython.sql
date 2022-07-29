@@ -4,7 +4,10 @@ select * from Topping
 Order by Id;
 select * from Batter
 Order by Id;
-Delete from Name;
-Delete from TypeOf;
-Delete from Topping
-Delete from Batter
+select  * from ListOfProducts
+delete  from ListOfProducts
+delete  from Name;
+delete from TypeOf;
+delete from Topping
+delete from Batter
+

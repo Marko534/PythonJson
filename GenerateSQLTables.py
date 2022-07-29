@@ -2,7 +2,7 @@ import datetime
 from sqlalchemy import Column, Integer, String, DateTime ,ForeignKey, create_engine
 from sqlalchemy.orm import declarative_base, relationship
 
-engine = create_engine('mssql://@MARKO-ILIOSKI/Test?driver=SQL Server Native Client 11.0', echo=True, future=True)
+engine = create_engine('mssql://@MARKO-ILIOSKI/Doughnuts?driver=SQL Server Native Client 11.0', echo=True, future=True)
 Base = declarative_base()
 
 
