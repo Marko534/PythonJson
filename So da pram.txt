@@ -1,0 +1,6 @@
+Povrzise so sql bazata 
+Vnesi podatoci 
+So select zeme I vo pandas I posle vo json 
+Json ko ce mi prata da gi sredam vo baza sql
+
+
